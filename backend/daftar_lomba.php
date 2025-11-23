@@ -23,7 +23,7 @@ if ($cek->num_rows > 0) {
 
 // Simpan pendaftaran
 $sql = "INSERT INTO pendaftaran (id_user, id_kategori, status_daftar) 
-        VALUES ('$id_user', '$id_kategori', 'menunggu')";
+        VALUES ('$id_user', '$id_kategori', 'Menunggu')";
         
 if ($conn->query($sql)) {
     echo "<script>alert('Pendaftaran berhasil! Menunggu verifikasi admin.'); window.location='../pages/dashboard.php';</script>";

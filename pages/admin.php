@@ -37,21 +37,43 @@ $result = $conn->query($sql);
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">🧑‍💼 Admin Panel - veteRUN</a>
-    <div class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item me-3">
-          <span class="text-white">Halo, <strong><?= htmlspecialchars($nama) ?></strong></span>
-        </li>
-        <li class="nav-item">
-          <a href="../backend/logout.php" class="btn btn-outline-light btn-sm">Logout</a>
-        </li>
-      </ul>
+  
+<nav class="navbar navbar-expand-lg navbar-dark" 
+     style="background: #1a1a1a; border-bottom: 3px solid #b30000;">
+    <div class="container">
+
+        <!-- LOGO -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="admin.php">
+            <img src="../asset/img/logoVTR.png" width="130">
+            <span class="ms-2">Admin Panel</span>
+        </a>
+
+        <!-- BURGER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- MENU -->
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav text-center text-lg-end">
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-white" href="admin.php">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-danger" href="../backend/logout.php">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
     </div>
-  </div>
 </nav>
+
 
 
 <div class="container mt-4">

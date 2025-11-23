@@ -24,28 +24,46 @@ $kategori_result = $conn->query("SELECT * FROM kategori_lomba");
 <body class="bg-light">
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">
-      <img src="https://cdn-icons-png.flaticon.com/512/2936/2936770.png" width="30" class="me-2">
-      VETE-RUN
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item me-3">
-          <span class="text-white">👋 Halo, <strong><?= $nama ?></strong></span>
-        </li>
-        <li class="nav-item">
-          <a href="../backend/logout.php" class="btn btn-light btn-sm">Logout</a>
-        </li>
-      </ul>
+        <!-- LOGO -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="dashboard.php">
+            <img src="../asset/img/logoVTR.png" width="130">
+        </a>
+
+        <!-- BURGER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- MENU -->
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav text-center text-lg-end">
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-dark" href="dashboard.php">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-dark" href="#kategori">Kategori</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-dark" href="#riwayat">Riwayat</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold text-danger" href="../backend/logout.php">Logout</a>
+                </li>
+
+            </ul>
+        </div>
+
     </div>
-  </div>
 </nav>
+
 
 <div class="container mt-4">
   <div class="card shadow">
