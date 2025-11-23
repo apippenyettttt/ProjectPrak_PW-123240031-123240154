@@ -2,22 +2,32 @@
 session_start();
 include __DIR__ . '/../config/database.php';
 
-$id_user = isset($_POST['id_user'])? $_POST['id_user'] : $_SESSION['id_user'];
-$id_kategori = $_POST['id_kategori'];
-
-// Cek apakah sudah daftar
-$cek = $conn->query("SELECT * FROM pendaftaran WHERE id_user='$id_user'");
-if ($cek->num_rows > 0) {
-    echo "<script>alert('Kamu sudah terdaftar di lomba!'); window.location='../pages/dashboard.php';</script>";
-    exit;
+if (!isset($_SESSION['id_user']) || $_SESSION['role'] != 'user') {
+    header("Location: ../pages/login.php");
+    exit();
 }
 
-// Tambahkan pendaftaran
-$sql = "INSERT INTO pendaftaran (id_user, id_kategori, status_daftar)
-        VALUES ('$id_user', '$id_kategori', 'Menunggu')";
+if (empty($_POST['id_user']) || empty($_POST['id_kategori'])) {
+    echo "<script>alert('Data tidak lengkap!'); window.location='../pages/dashboard.php';</script>";
+    exit();
+}
+
+$id_user = $conn->real_escape_string($_POST['id_user']);
+$id_kategori = $conn->real_escape_string($_POST['id_kategori']);
+
+$cek = $conn->query("SELECT * FROM pendaftaran WHERE id_user='$id_user' AND id_kategori='$id_kategori'");
+if ($cek->num_rows > 0) {
+    echo "<script>alert('Anda sudah mendaftar kategori ini!'); window.location='../pages/dashboard.php';</script>";
+    exit();
+}
+
+// Simpan pendaftaran
+$sql = "INSERT INTO pendaftaran (id_user, id_kategori, status_daftar) 
+        VALUES ('$id_user', '$id_kategori', 'menunggu')";
+        
 if ($conn->query($sql)) {
     echo "<script>alert('Pendaftaran berhasil! Menunggu verifikasi admin.'); window.location='../pages/dashboard.php';</script>";
 } else {
-   die('Query error: ' . $conn->error);
+    echo "<script>alert('Terjadi kesalahan sistem. Silakan coba lagi.'); window.location='../pages/dashboard.php';</script>";
 }
 ?>
