@@ -76,7 +76,7 @@
             padding: 25px;
             background: linear-gradient(
                 135deg,
-                rgba(255, 77, 77, 0.1),   /* soft merah */
+                rgba(255, 255, 255, 0.1),   /* soft merah */
                 rgba(0, 0, 0, 0.3)        /* soft gelap */
             );
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -87,7 +87,7 @@
             transform: translateY(-5px);
             background: linear-gradient(
                 135deg,
-                rgba(255, 77, 77, 0.5),
+                rgba(0, 0, 0, 0.5),
                 rgba(0, 0, 0, 0.1) 
              );
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -143,7 +143,7 @@
             <img src="../asset/img/logoVTR.png" width="140" class="me-2">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <button class="navbar-toggler btn btn-outline-danger" type="button" data-bs-toggle="collapse"  data-bs-target="#navmenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -159,10 +159,10 @@
                     <a class="nav-link fw-semibold text-white navlink" href="#kategori">Kategori</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold text-warning navlink" href="login.php">Login</a>
+                    <a class="nav-link fw-semibold text-danger navlink" href="login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold text-warning navlink" href="register.php">Daftar</a>
+                    <a class="nav-link fw-semibold text-danger navlink" href="register.php">Daftar</a>
                 </li>
             </ul>
         </div>
@@ -183,7 +183,7 @@
 <section class="container mt-5" id="tentang">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <div class="p-4 p-md-5 rounded shadow-sm" style="background: linear-gradient(120deg, #111, #3a0000); color: #fff;">
+            <div class="p-4 p-md-5 rounded shadow-sm" style="background: linear-gradient(100deg, #bc2929ff, #000000ff); color: #fff;">
                 <h2 class="fw-bold text-center mb-3" style="color:#ff4d4d;">Tentang VETE-RUN 2025</h2>
                 <p class="text-center mb-4" style="font-size: 1.05rem;">
                     <strong>VETE-RUN</strong> adalah event lari tahunan yang diselenggarakan oleh 
