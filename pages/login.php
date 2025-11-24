@@ -114,9 +114,9 @@ session_start();
     </form>
 
     <!-- Tombol tambahan untuk kembali ke beranda -->
-    <a href="index.php" class="btn btn-secondary w-100">Kembali ke Beranda</a>
+    <a href="index.php" class="btn btn-secondary w-100 link-offset-2 link-underline link-underline-opacity-0">Kembali ke Beranda</a>
 
-    <p class="mt-3">Belum punya akun? <a href="register.php">Daftar Sekarang</a></p>
+    <p class="mt-3">Belum punya akun? <a class="link-offset-2 link-underline link-underline-opacity-0" href="register.php">Daftar Sekarang</a></p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

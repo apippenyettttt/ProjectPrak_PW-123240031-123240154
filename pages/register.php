@@ -121,8 +121,8 @@ label {
         <button type="submit" class="btn btn-danger w-100 mt-3">Daftar</button>
     </form>
 
-    <a href="index.php" class="btn btn-secondary w-100 mt-2">Kembali ke Beranda</a>
-    <p class="mt-3 text-center">Sudah punya akun? <a href="login.php">Masuk</a></p>
+    <a href="index.php" class="btn btn-secondary w-100 mt-2 link-offset-2 link-underline link-underline-opacity-0">Kembali ke Beranda</a>
+    <p class="mt-3 text-center">Sudah punya akun? <a href="login.php" class="link-underline link-underline-opacity-0">Masuk</a></p>
 </div>
 
 <script>
