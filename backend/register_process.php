@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 
 include __DIR__ . '/../config/database.php';
 
-if (empty($_POST['nama']) || empty($_POST['email']) || empty($_POST['password'])) {
+// Cek semua field wajib
+if (empty($_POST['nama']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['confirm_password'])) {
     echo "<script>alert('Semua field harus diisi!'); window.location='../pages/register.php';</script>";
     exit();
 }
@@ -12,12 +13,21 @@ if (empty($_POST['nama']) || empty($_POST['email']) || empty($_POST['password'])
 $nama = $conn->real_escape_string($_POST['nama']);
 $email = $conn->real_escape_string($_POST['email']);
 $password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
 
+// Validasi email
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo "<script>alert('Format email tidak valid!'); window.location='../pages/register.php';</script>";
     exit();
 }
 
+// Cek kecocokan password
+if ($password !== $confirm_password) {
+    echo "<script>alert('Password dan konfirmasi password tidak sama!'); window.location='../pages/register.php';</script>";
+    exit();
+}
+
+// Hash password
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // Cek apakah email sudah terdaftar
@@ -27,9 +37,10 @@ if ($cek->num_rows > 0) {
     exit();
 }
 
+// Insert data
 $sql = "INSERT INTO users (nama_lengkap, email, password, role) 
         VALUES ('$nama', '$email', '$hashedPassword', 'user')";
-        
+
 if ($conn->query($sql)) {
     echo "<script>alert('Pendaftaran berhasil! Silakan login.'); window.location='../pages/login.php';</script>";
 } else {

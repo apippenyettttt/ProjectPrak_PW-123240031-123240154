@@ -1,137 +1,131 @@
 <?php
 session_start();
-include  __DIR__ . '/../config/database.php';
+include __DIR__.'/../config/database.php';
 
-//hanya admin yang bisa masuk
-if(!isset($_SESSION['id_user']) || $_SESSION['role']!='admin'){
+// Hanya admin yang bisa akses
+if(!isset($_SESSION['id_user']) || $_SESSION['role'] != 'admin'){
     header("Location: login.php");
     exit();
 }
-
-// Ambil data session dengan aman
-$nama = isset($_SESSION['nama']) ? $_SESSION['nama'] : 'Admin VETE-RUN';
-$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
-
-//ambil full data psrta
-$sql = "SELECT
-            p.id_pendaftaran,
-            u.nama_lengkap,
-            u.email,
-            k.nama_kategori,
-            p.tanggal_daftar,
-            p.no_bib,
-            p.status_daftar
+// Ambil semua pendaftaran + pembayaran + user + kategori
+$sql = "SELECT p.id_pendaftaran, p.id_user, p.id_kategori, p.no_bib, p.status_daftar,
+        u.nama_lengkap, u.email,
+        k.nama_kategori,
+        pb.id_pembayaran, pb.jumlah_bayar, pb.metode_bayar, pb.status_bayar, pb.tanggal_bayar
         FROM pendaftaran p
         JOIN users u ON p.id_user = u.id_user
         JOIN kategori_lomba k ON p.id_kategori = k.id_kategori
+        LEFT JOIN pembayaran pb ON p.id_pendaftaran = pb.id_pendaftaran
         ORDER BY p.tanggal_daftar DESC";
+
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin | veteRUN</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Admin Panel | VETE-RUN</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+    background: #cacacaff;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+.table thead {
+    background-color: #ff4d4d;
+    color: #fff;
+}
+.badge-status {
+    padding: 0.4em 0.7em;
+    font-size: 0.85rem;
+}
+</style>
 </head>
-<body class="bg-light">
-  
-<nav class="navbar navbar-expand-lg navbar-dark" 
-     style="background: #1a1a1a; border-bottom: 3px solid #b30000;">
-    <div class="container">
+<body>
 
-        <!-- LOGO -->
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center" href="admin.php">
-            <img src="../asset/img/logoVTR.png" width="130">
+            <img src="../asset/img/logoVTR.png" width="130" alt="">
             <span class="ms-2">Admin Panel</span>
         </a>
-
-        <!-- BURGER -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navmenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- MENU -->
-        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
-            <ul class="navbar-nav text-center text-lg-end">
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-white" href="admin.php">Dashboard</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-danger" href="../backend/logout.php">
-                        Logout
-                    </a>
-                </li>
-
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link fw-semibold" href="admin.php">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold text-danger" href="../backend/logout.php">Logout</a></li>
             </ul>
         </div>
-
     </div>
 </nav>
 
-
-
 <div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-body">
-         <h4 class="fw-bold text-danger">Daftar Peserta Lomba</h4>
-            <table class="table table-bordered table-striped align-middle mt-3">
-                <thead class="table-danger">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Kategori</th>
-                    <th>Tanggal Daftar</th>
-                    <th>Status</th>
-                    <th>No BIB</th>
-                    <th>Aksi</th>
-                </tr>
-                </thead>
-            <tbody>
-            <?php 
-            $no = 1;
-            while ($row = $result->fetch_assoc()): ?>
+    <h3 class="mb-3 fw-bold" >Verifikasi Pendaftaran & Pembayaran</h3>
+
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Kategori</th>
+                <th>Status Daftar</th>
+                <th>Pembayaran</th>
+                <th>No BIB</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php $no=1; while($row=$result->fetch_assoc()): ?>
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= htmlspecialchars($row['nama_lengkap']) ?></td>
                 <td><?= htmlspecialchars($row['email']) ?></td>
                 <td><?= htmlspecialchars($row['nama_kategori']) ?></td>
-                <td><?= $row['tanggal_daftar'] ?></td>
                 <td>
-                <span class="badge 
-                    <?= $row['status_daftar'] == 'Menunggu' ? 'bg-warning' : 
-                        ($row['status_daftar'] == 'Disetujui' ? 'bg-success' : 'bg-danger') ?>">
-                    <?= $row['status_daftar'] ?>
-                </span>
+                    <span class="badge badge-status 
+                        <?= strtolower($row['status_daftar'])=='menunggu'?'bg-warning':
+                           (strtolower($row['status_daftar'])=='disetujui'?'bg-success':'bg-danger') ?>">
+                        <?= ucfirst($row['status_daftar']) ?>
+                    </span>
+                </td>
+                <td>
+                    <?php if($row['id_pembayaran']): ?>
+                        <span class="badge badge-status 
+                            <?= strtolower($row['status_bayar'])=='menunggu'?'bg-warning':
+                               (strtolower($row['status_bayar'])=='terverifikasi'?'bg-success':'bg-danger') ?>">
+                            <?= ucfirst($row['status_bayar']) ?>
+                        </span><br>
+                        Rp <?= number_format($row['jumlah_bayar'],0,',','.') ?> - <?= ucfirst($row['metode_bayar']) ?>
+                    <?php else: ?>
+                        <span class="text-muted">Belum bayar</span>
+                    <?php endif; ?>
                 </td>
                 <td><?= $row['no_bib'] ?: '-' ?></td>
                 <td>
-                <form action="../backend/update_status.php" method="POST" class="d-flex">
-                    <input type="hidden" name="id_pendaftaran" value="<?= $row['id_pendaftaran'] ?>">
-                    <input type="text" name="no_bib" class="form-control form-control-sm me-2" placeholder="No BIB" value="<?= $row['no_bib'] ?>">
-                    <select name="status_daftar" class="form-select form-select-sm me-2">
-                    <option <?= $row['status_daftar']=='Menunggu'?'selected':'' ?>>Menunggu</option>
-                    <option <?= $row['status_daftar']=='Disetujui'?'selected':'' ?>>Disetujui</option>
-                    <option <?= $row['status_daftar']=='Ditolak'?'selected':'' ?>>Ditolak</option>
-                    </select>
-                    <button type="submit" class="btn btn-sm btn-danger">Simpan</button>
-                </form>
+                    <?php 
+                    // Hanya tampilkan form jika status daftar menunggu dan pembayaran menunggu
+                    if(strtolower($row['status_daftar'])=='menunggu' && $row['id_pembayaran'] && strtolower($row['status_bayar'])=='menunggu'): ?>
+                        <form action="../backend/verifikasi_gabungan.php" method="POST" class="d-flex gap-1">
+                            <input type="hidden" name="id_pendaftaran" value="<?= $row['id_pendaftaran'] ?>">
+                            <input type="hidden" name="id_pembayaran" value="<?= $row['id_pembayaran'] ?>">
+                            <input type="text" name="no_bib" class="form-control form-control-sm" placeholder="No BIB" required>
+                            <button type="submit" name="aksi" value="terverifikasi" class="btn btn-sm btn-success">Verifikasi</button>
+                            <button type="submit" name="aksi" value="ditolak" class="btn btn-sm btn-danger">Tolak</button>
+                        </form>
+                    <?php else: ?>
+                        <span>-</span>
+                    <?php endif; ?>
                 </td>
             </tr>
-            <?php endwhile; ?>
+        <?php endwhile; ?>
         </tbody>
-      </table>
+    </table>
     </div>
-  </div>
 </div>
-</body>
-</html>   
-    
+
 </body>
 </html>
