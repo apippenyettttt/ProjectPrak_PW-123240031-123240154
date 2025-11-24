@@ -25,7 +25,7 @@ session_start();
         }
 
     .header-banner {
-        background: linear-gradient(100deg, #ffffffff, #000000ff);
+        background: linear-gradient(to right,#000000ff, #ffffffff, #000000ff);
         color: white;
         padding: 60px 20px;
         text-align: center;
@@ -59,7 +59,6 @@ session_start();
         <a class="navbar-brand fw-bold d-flex align-items-center" href="index.php">
             <img src="../asset/img/logoVTR.png" width="140" class="me-2">
         </a>
-
         <!-- BURGER -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
                 data-bs-target="#navmenu">
@@ -83,11 +82,11 @@ session_start();
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold text-warning navlink" href="login.php">Login</a>
+                    <a class="nav-link fw-semibold text-danger navlink" href="login.php">Login</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold text-warning navlink" href="register.php">Daftar</a>
+                    <a class="nav-link fw-semibold text-danger navlink" href="register.php">Daftar</a>
                 </li>
 
             </ul>
@@ -96,7 +95,7 @@ session_start();
 </nav>
 
 <!-- HEADER -->
-<div class="header-banner">
+<div class="header-banner" style="color:black;">
     <h1 class="fw-bold">Rute Lomba 15K</h1>
     <p>Start & Finish: Kampus UPN Veteran Yogyakarta</p>
 </div>
@@ -162,5 +161,6 @@ session_start();
     });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

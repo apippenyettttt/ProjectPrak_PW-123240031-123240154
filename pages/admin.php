@@ -65,7 +65,6 @@ body {
 .navbar-brand {
     font-weight: 800;
 }
-
 .lari {
     height: 100vh; /* full height viewport */
     min-height: 600px; /* optional untuk layar kecil */
