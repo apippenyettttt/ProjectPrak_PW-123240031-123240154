@@ -57,23 +57,36 @@ $user_daftar = $cek_daftar->fetch_assoc();
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navmenu">
-        <ul class="navbar-nav text-center text-lg-end">
-            <li class="nav-item"><a class="nav-link fw-semibold text-dark" href="dashboard.php">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link fw-semibold text-dark" href="#kategori">Kategori</a></li>
-            <li class="nav-item"><a class="nav-link fw-semibold text-dark" href="#riwayat">Riwayat</a></li>
-            <li class="nav-item"><a class="nav-link fw-semibold text-danger" href="../backend/logout.php">Logout</a></li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#kategori">Kategori</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#riwayat">Riwayat</a>
+        </li>
         </ul>
     </div>
+    <div class="d-flex align-items-center">
+            <span class="text-dark me-3" style="color:black;">
+                <i class="fas fa-user-circle me-1"></i>
+                Halo, <?= htmlspecialchars($_SESSION['nama'] ?? 'User') ?>
+            </span>
+            <a class="btn btn-outline-dark btn-sm" href="../backend/logout.php">
+                <i class="fas fa-sign-out-alt me-1"></i>Logout
+            </a>
+        </div>
 </div>
 </nav>
 
 <div class="container mt-4">
 
 <!-- Halo User -->
-<div class="card card-dashboard p-4 mb-4">
-    <h4 class="fw-bold text-danger">Halo, <?= $nama ?>!</h4>
-    <p>Selamat datang di dashboard peserta VETE-RUN 2025. Silakan pilih kategori lomba yang ingin diikuti.</p>
+<div class="card card-dashboard p-4 mb-4 text-center" id="dashboard">
+    <h4 class="fw-bold text-danger">Selamat datang di dashboard peserta VETE-RUN 2025. Silakan pilih kategori lomba yang ingin diikuti.</h4>
 </div>
 
 <!-- Kategori Lomba -->

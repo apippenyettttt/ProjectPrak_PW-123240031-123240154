@@ -46,9 +46,14 @@ if(!$pendaftaran){
                         <option value="cash">Cash</option>
                     </select>
                 </div>
+                <!-- Tambahkan di form pembayaran -->
                 <div class="mb-3">
-                    <label>Bukti Transfer (opsional jika cash)</label>
-                    <input type="file" name="bukti_transfer" class="form-control">
+                    <label>Bukti Transfer <span class="text-danger">*</span></label>
+                    <input type="file" name="bukti_transfer" class="form-control" required accept="image/*,.pdf">
+                    <div class="form-text">
+                        Format: JPG, PNG, PDF (Maks. 2MB)
+                        <br>File akan disimpan di: <code>asset/bukti_bayar/</code>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-danger">Bayar Sekarang</button>
                 <a href="dashboard.php" class="btn btn-secondary">Batal</a>

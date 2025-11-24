@@ -1,0 +1,9 @@
+# Blok akses langsung ke folder bukti_bayar
+Order Deny,Allow
+Deny from all
+
+# Izinkan akses hanya dari PHP script
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

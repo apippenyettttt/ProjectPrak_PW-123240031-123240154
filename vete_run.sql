@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Nov 2025 pada 08.04
+-- Waktu pembuatan: 24 Nov 2025 pada 14.35
 -- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.0.30
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,17 +32,18 @@ CREATE TABLE `kategori_lomba` (
   `nama_kategori` varchar(50) DEFAULT NULL,
   `jarak_km` int(11) DEFAULT NULL,
   `biaya` decimal(10,2) DEFAULT NULL,
-  `kuota` int(11) DEFAULT NULL
+  `kuota` int(11) DEFAULT NULL,
+  `prefix_bib` varchar(5) NOT NULL DEFAULT 'VTR'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kategori_lomba`
 --
 
-INSERT INTO `kategori_lomba` (`id_kategori`, `nama_kategori`, `jarak_km`, `biaya`, `kuota`) VALUES
-(1, '5K', 5, 50000.00, 100),
-(2, '15K', 15, 100000.00, 100),
-(3, '50K', 50, 200000.00, 50);
+INSERT INTO `kategori_lomba` (`id_kategori`, `nama_kategori`, `jarak_km`, `biaya`, `kuota`, `prefix_bib`) VALUES
+(1, '5K', 5, 50000.00, 100, 'VTR5K'),
+(2, '15K', 15, 100000.00, 100, 'VTR15'),
+(3, '50K', 50, 200000.00, 50, 'VTR50');
 
 -- --------------------------------------------------------
 
@@ -56,7 +57,7 @@ CREATE TABLE `pembayaran` (
   `tanggal_bayar` datetime DEFAULT current_timestamp(),
   `jumlah_bayar` decimal(10,2) DEFAULT NULL,
   `metode_bayar` enum('transfer','cash') DEFAULT 'transfer',
-  `bukti_transfer` varchar(255) DEFAULT NULL,
+  `bukti_transfer` mediumblob DEFAULT NULL,
   `status_bayar` enum('menunggu','terverifikasi','ditolak') DEFAULT 'menunggu'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,13 +75,6 @@ CREATE TABLE `pendaftaran` (
   `no_bib` varchar(20) DEFAULT NULL,
   `status_daftar` enum('menunggu','disetujui','ditolak') DEFAULT 'menunggu'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `pendaftaran`
---
-
-INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_user`, `id_kategori`, `tanggal_daftar`, `no_bib`, `status_daftar`) VALUES
-(2, 3, 1, '2025-11-10 11:45:40', NULL, 'menunggu');
 
 -- --------------------------------------------------------
 
@@ -104,8 +98,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nama_lengkap`, `email`, `password`, `no_hp`, `alamat`, `role`, `tanggal_daftar`) VALUES
-(1, 'Admin VETE-RUN', 'admin@veterun.com', '$2y$10$OKf89kt7bdk.0BgGSCkyUOlzcyHKMpnI1qaOeoAaMyaqlDF4CMUBS', NULL, NULL, 'admin', '2025-11-09 20:29:47'),
-(3, 'apip penyet', 'test@gmail.com', '$2y$10$/P.nczdfbAP.FuBEDChKkuILnZUKbZYPiGCNo5laPueC5VmXDbH12', NULL, NULL, 'user', '2025-11-10 10:04:40');
+(1, 'Admin VETE-RUN', 'admin@veterun.com', '$2y$10$Of4bdH.2dVFM0pnplUhcOeLS6fqHxbOI3g9RB8OmBQUqEimUMoHea', NULL, NULL, 'admin', '2025-11-09 20:29:47'),
+(3, 'apip penyet', 'test@gmail.com', '$2y$10$cJuYfDfnpIZQ2KG9hW4SEe2eydFtkRkff..RzK0IALuBH6meJQnyq', NULL, NULL, 'user', '2025-11-10 10:04:40');
 
 --
 -- Indexes for dumped tables
@@ -154,19 +148,19 @@ ALTER TABLE `kategori_lomba`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
