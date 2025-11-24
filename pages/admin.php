@@ -148,7 +148,7 @@ html, body {
     display: block;
 }
 .actions-column {
-    min-width: 200px;
+    min-width: 220px;
 }
 </style>
 </head>
@@ -175,173 +175,153 @@ html, body {
 
 <div class="container-fluid mx-0 px-0">
     <section class="lari" id="beranda">
-                <div class="lari-overlay"></div>
-                <div class="lari-content">
-    <!-- <div class="row"> -->
-        <!-- SIDEBAR
-        <div class="col-md-3 col-lg-2 sidebar d-md-block">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="admin.php">
-                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pembayaran">
-                            <i class="fas fa-money-bill-wave me-2"></i>Verifikasi Pembayaran
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div> -->
+        <div class="lari-overlay"></div>
+        <div class="lari-content">
+            <div class="col-md-9 col-lg-10 main-content mx-auto">
+                <!-- STATISTIK -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="card stat-card border-primary">
+                            <div class="card-body text-center">
+                                <i class="fas fa-users fa-2x text-primary mb-2"></i>
+                                <h3 class="stat-number text-primary"><?= $stats['total_peserta'] ?></h3>
+                                <p class="text-muted mb-0">Total Peserta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card stat-card border-success">
+                            <div class="card-body text-center">
+                                <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+                                <h3 class="stat-number text-success"><?= $stats['disetujui'] ?></h3>
+                                <p class="text-muted mb-0">Disetujui</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card stat-card border-warning">
+                            <div class="card-body text-center">
+                                <i class="fas fa-clock fa-2x text-warning mb-2"></i>
+                                <h3 class="stat-number text-warning"><?= $stats['menunggu'] ?></h3>
+                                <p class="text-muted mb-0">Menunggu</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card stat-card border-danger">
+                            <div class="card-body text-center">
+                                <i class="fas fa-times-circle fa-2x text-danger mb-2"></i>
+                                <h3 class="stat-number text-danger"><?= $stats['ditolak'] ?></h3>
+                                <p class="text-muted mb-0">Ditolak</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
 
-        <!-- MAIN CONTENT -->
-        <div class="col-md-9 col-lg-10 main-content mx-auto">
-            <!-- STATISTIK -->
-            <div class="row mb-4">
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-primary">
-                        <div class="card-body text-center">
-                            <i class="fas fa-users fa-2x text-primary mb-2"></i>
-                            <h3 class="stat-number text-primary"><?= $stats['total_peserta'] ?></h3>
-                            <p class="text-muted mb-0">Total Peserta</p>
-                        </div>
+                <!-- DATA PESERTA -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h4 class="mb-0 text-danger">
+                            <i class="fas fa-list-alt me-2"></i>Data Pendaftaran Peserta
+                        </h4>
                     </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-success">
-                        <div class="card-body text-center">
-                            <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
-                            <h3 class="stat-number text-success"><?= $stats['disetujui'] ?></h3>
-                            <p class="text-muted mb-0">Disetujui</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-warning">
-                        <div class="card-body text-center">
-                            <i class="fas fa-clock fa-2x text-warning mb-2"></i>
-                            <h3 class="stat-number text-warning"><?= $stats['menunggu'] ?></h3>
-                            <p class="text-muted mb-0">Menunggu</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card stat-card border-danger">
-                        <div class="card-body text-center">
-                            <i class="fas fa-times-circle fa-2x text-danger mb-2"></i>
-                            <h3 class="stat-number text-danger"><?= $stats['ditolak'] ?></h3>
-                            <p class="text-muted mb-0">Ditolak</p>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-
-            <!-- DATA PESERTA -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-white">
-                    <h4 class="mb-0 text-danger">
-                        <i class="fas fa-list-alt me-2"></i>Data Pendaftaran Peserta
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped align-middle">
-                            <thead>
-                                <tr>
-                                    <th width="50">No</th>
-                                    <th>Nama Peserta</th>
-                                    <th>Email</th>
-                                    <th>Kategori</th>
-                                    <th>Status Daftar</th>
-                                    <th>Status Pembayaran</th>
-                                    <th>Bukti Bayar</th>
-                                    <th>No BIB</th>
-                                    <th width="200" class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php if($result->num_rows > 0): ?>
-                                <?php $no=1; while($row=$result->fetch_assoc()): ?>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle">
+                                <thead>
                                     <tr>
-                                        <td class="text-center"><?= $no++ ?></td>
-                                        <td>
-                                            <strong><?= htmlspecialchars($row['nama_lengkap']) ?></strong>
-                                            <?php if($row['no_hp']): ?>
-                                                <br><small class="text-muted"><i class="fas fa-phone me-1"></i><?= htmlspecialchars($row['no_hp']) ?></small>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td><?= htmlspecialchars($row['email']) ?></td>
-                                        <td>
-                                            <span class="badge bg-light text-dark">
-                                                <?= htmlspecialchars($row['nama_kategori']) ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-status 
-                                                <?= $row['status_daftar']=='menunggu'?'bg-warning':
-                                                   ($row['status_daftar']=='disetujui'?'bg-success':'bg-danger') ?>">
-                                                <i class="fas fa-<?= $row['status_daftar']=='menunggu'?'clock':($row['status_daftar']=='disetujui'?'check':'times') ?> me-1"></i>
-                                                <?= ucfirst($row['status_daftar']) ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <?php if($row['id_pembayaran']): ?>
-                                                <span class="badge badge-status 
-                                                    <?= $row['status_bayar']=='menunggu'?'bg-warning':
-                                                       ($row['status_bayar']=='terverifikasi'?'bg-success':'bg-danger') ?>">
-                                                    <i class="fas fa-<?= $row['status_bayar']=='menunggu'?'clock':($row['status_bayar']=='terverifikasi'?'check':'times') ?> me-1"></i>
-                                                    <?= ucfirst($row['status_bayar']) ?>
-                                                </span>
-                                                <br>
-                                                <small class="text-muted">
-                                                    Rp <?= number_format($row['jumlah_bayar'],0,',','.') ?>
-                                                    • <?= ucfirst($row['metode_bayar']) ?>
-                                                </small>
-                                            <?php else: ?>
-                                                <span class="badge bg-secondary">
-                                                    <i class="fas fa-minus me-1"></i>Belum Bayar
-                                                </span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php if($row['bukti_transfer']): 
-                                                $file_extension = strtolower(pathinfo($row['bukti_transfer'], PATHINFO_EXTENSION));
-                                                $is_image = in_array($file_extension, ['jpg', 'jpeg', 'png', 'gif']);
-                                            ?>
-                                                <?php if($is_image): ?>
-                                                    <img src="../asset/bukti_bayar/<?= $row['bukti_transfer'] ?>" 
-                                                         class="bukti-img" 
-                                                         alt="Bukti Transfer"
-                                                         data-bs-toggle="modal" 
-                                                         data-bs-target="#buktiModal"
-                                                         data-bukti="<?= $row['bukti_transfer'] ?>"
-                                                         data-nama="<?= htmlspecialchars($row['nama_lengkap']) ?>">
-                                                <?php else: ?>
-                                                    <a href="../asset/bukti_bayar/<?= $row['bukti_transfer'] ?>" 
-                                                       target="_blank" 
-                                                       class="btn btn-sm btn-outline-primary">
-                                                        <i class="fas fa-file me-1"></i>Lihat
-                                                    </a>
+                                        <th width="50">No</th>
+                                        <th>Nama Peserta</th>
+                                        <th>Email</th>
+                                        <th>Kategori</th>
+                                        <th>Status Daftar</th>
+                                        <th>Status Pembayaran</th>
+                                        <th>Bukti Bayar</th>
+                                        <th>No BIB</th>
+                                        <th width="220" class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php if($result->num_rows > 0): ?>
+                                    <?php $no=1; while($row=$result->fetch_assoc()): ?>
+                                        <tr>
+                                            <td class="text-center"><?= $no++ ?></td>
+                                            <td>
+                                                <strong><?= htmlspecialchars($row['nama_lengkap']) ?></strong>
+                                                <?php if($row['no_hp']): ?>
+                                                    <br><small class="text-muted"><i class="fas fa-phone me-1"></i><?= htmlspecialchars($row['no_hp']) ?></small>
                                                 <?php endif; ?>
-                                            <?php else: ?>
-                                                <span class="text-muted">-</span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <?php if($row['no_bib']): ?>
-                                                <span class="badge bg-dark"><?= $row['no_bib'] ?></span>
-                                            <?php else: ?>
-                                                <span class="text-muted">-</span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td class="text-center">
+                                            </td>
+                                            <td><?= htmlspecialchars($row['email']) ?></td>
+                                            <td>
+                                                <span class="badge bg-light text-dark">
+                                                    <?= htmlspecialchars($row['nama_kategori']) ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-status 
+                                                    <?= $row['status_daftar']=='menunggu'?'bg-warning':
+                                                       ($row['status_daftar']=='disetujui'?'bg-success':'bg-danger') ?>">
+                                                    <i class="fas fa-<?= $row['status_daftar']=='menunggu'?'clock':($row['status_daftar']=='disetujui'?'check':'times') ?> me-1"></i>
+                                                    <?= ucfirst($row['status_daftar']) ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <?php if($row['id_pembayaran']): ?>
+                                                    <span class="badge badge-status 
+                                                        <?= $row['status_bayar']=='menunggu'?'bg-warning':
+                                                           ($row['status_bayar']=='terverifikasi'?'bg-success':'bg-danger') ?>">
+                                                        <i class="fas fa-<?= $row['status_bayar']=='menunggu'?'clock':($row['status_bayar']=='terverifikasi'?'check':'times') ?> me-1"></i>
+                                                        <?= ucfirst($row['status_bayar']) ?>
+                                                    </span>
+                                                    <br>
+                                                    <small class="text-muted">
+                                                        Rp <?= number_format($row['jumlah_bayar'],0,',','.') ?>
+                                                        • <?= ucfirst($row['metode_bayar']) ?>
+                                                    </small>
+                                                <?php else: ?>
+                                                    <span class="badge bg-secondary">
+                                                        <i class="fas fa-minus me-1"></i>Belum Bayar
+                                                    </span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if($row['bukti_transfer']): 
+                                                    $file_extension = strtolower(pathinfo($row['bukti_transfer'], PATHINFO_EXTENSION));
+                                                    $is_image = in_array($file_extension, ['jpg', 'jpeg', 'png']);
+                                                ?>
+                                                    <?php if($is_image): ?>
+                                                        <img src="../asset/bukti_bayar/<?= $row['bukti_transfer'] ?>" 
+                                                             class="bukti-img" 
+                                                             alt="Bukti Transfer"
+                                                             data-bs-toggle="modal" 
+                                                             data-bs-target="#buktiModal"
+                                                             data-bukti="<?= $row['bukti_transfer'] ?>"
+                                                             data-nama="<?= htmlspecialchars($row['nama_lengkap']) ?>">
+                                                    <?php else: ?>
+                                                        <a href="../asset/bukti_bayar/<?= $row['bukti_transfer'] ?>" 
+                                                           target="_blank" 
+                                                           class="btn btn-sm btn-outline-primary">
+                                                            <i class="fas fa-file me-1"></i>Lihat
+                                                        </a>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    <span class="text-muted">-</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if($row['no_bib']): ?>
+                                                    <span class="badge bg-dark"><?= $row['no_bib'] ?></span>
+                                                <?php else: ?>
+                                                    <span class="text-muted">-</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
                                             <div class="d-flex flex-column gap-1">
                                                 <?php 
-                                                // TOMBOL VERIFIKASI - hanya untuk yang menunggu pembayaran
+                                                // TOMBOL VERIFIKASI - untuk yang sudah upload bukti & status menunggu
                                                 if($row['status_daftar']=='menunggu' && $row['id_pembayaran'] && $row['status_bayar']=='menunggu'): ?>
-                                                    <!-- Tombol Lihat Bukti (jika ada) -->
+                                                    <!-- Tombol Lihat Bukti -->
                                                     <?php if($row['bukti_transfer']): ?>
                                                         <button type="button" class="btn btn-sm btn-info btn-action"
                                                                 data-bs-toggle="modal" 
@@ -363,8 +343,23 @@ html, body {
                                                             <i class="fas fa-times me-1"></i>Tolak
                                                         </button>
                                                     </form>
-                                                <?php else: ?>
-                                                    <!-- Untuk yang sudah diverifikasi/ditolak -->
+                                                
+                                                <?php 
+                                                // TOMBOL TOLAK - untuk yang belum upload bukti & status menunggu
+                                                elseif($row['status_daftar']=='menunggu' && !$row['id_pembayaran']): ?>
+                                                    <form action="../backend/verifikasi_gabungan.php" method="POST">
+                                                        <input type="hidden" name="id_pendaftaran" value="<?= $row['id_pendaftaran'] ?>">
+                                                        <input type="hidden" name="id_pembayaran" value="0"> <!-- Kosongkan karena belum bayar -->
+                                                        <button type="submit" name="aksi" value="ditolak" class="btn btn-sm btn-danger btn-action">
+                                                            <i class="fas fa-times me-1"></i>Tolak Pendaftaran
+                                                        </button>
+                                                        <small class="text-muted d-block mt-1">Belum upload bukti</small>
+                                                    </form>
+
+                                                <?php 
+                                                // UNTUK STATUS SUDAH VERIFIKASI/DITOLAK
+                                                else: ?>
+                                                    <!-- Untuk yang sudah diverifikasi -->
                                                     <?php if($row['no_bib']): ?>
                                                         <span class="badge bg-success">
                                                             <i class="fas fa-check me-1"></i><?= $row['no_bib'] ?>
@@ -374,26 +369,38 @@ html, body {
                                                             <i class="fas fa-minus"></i>
                                                         </span>
                                                     <?php endif; ?>
+                                                    
+                                                    <!-- Tombol Hapus untuk status ditolak -->
+                                                    <?php if($row['status_daftar'] == 'ditolak'): ?>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger btn-action" 
+                                                                data-bs-toggle="modal" 
+                                                                data-bs-target="#deleteModal"
+                                                                data-id="<?= $row['id_pendaftaran'] ?>"
+                                                                data-nama="<?= htmlspecialchars($row['nama_lengkap']) ?>">
+                                                            <i class="fas fa-trash me-1"></i>Hapus Pendaftaran
+                                                        </button>
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
                                             </div>
                                         </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="9" class="text-center py-4">
+                                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                            <p class="text-muted">Belum ada data pendaftaran</p>
+                                        </td>
                                     </tr>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="9" class="text-center py-4">
-                                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
-                                        <p class="text-muted">Belum ada data pendaftaran</p>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-                            </tbody>
-                        </table>
+                                <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <!-- MODAL BUKTI BAYAR -->
@@ -419,6 +426,36 @@ html, body {
     </div>
 </div>
 
+<!-- MODAL KONFIRMASI HAPUS -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Konfirmasi Hapus Data
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus data pendaftaran peserta <strong id="namaPesertaHapus"></strong>?</p>
+                <p class="text-danger"><small>Data pendaftaran dan pembayaran akan dihapus, namun data user tetap tersimpan.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-1"></i>Batal
+                </button>
+                <form id="deleteForm" method="POST" action="../backend/delete_process.php">
+                    <input type="hidden" name="id_pendaftaran" id="deleteIdPendaftaran">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-1"></i>Hapus Pendaftaran
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 // JavaScript untuk modal bukti bayar
@@ -431,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const namaPeserta = button.getAttribute('data-nama');
         const fileExtension = buktiFile.split('.').pop().toLowerCase();
         const modalContent = document.getElementById('modalContent');
-        const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension);
+        const isImage = ['jpg', 'jpeg', 'png'].includes(fileExtension);
         
         // Isi data ke modal
         document.getElementById('namaPeserta').textContent = namaPeserta;
@@ -478,19 +515,27 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
     });
+
+    // JavaScript untuk modal hapus
+const deleteModal = document.getElementById('deleteModal');
+deleteModal.addEventListener('show.bs.modal', function(event) {
+    const button = event.relatedTarget;
+    const idPendaftaran = button.getAttribute('data-id');
+    const namaPeserta = button.getAttribute('data-nama');
+    
+    document.getElementById('namaPesertaHapus').textContent = namaPeserta;
+    document.getElementById('deleteIdPendaftaran').value = idPendaftaran;
 });
 
-                </div>
-</section>
-
-// Auto-close alerts setelah 5 detik
-setTimeout(function() {
-    const alerts = document.querySelectorAll('.alert');
-    alerts.forEach(alert => {
-        const bsAlert = new bootstrap.Alert(alert);
-        bsAlert.close();
-    });
-}, 5000);
+    // Auto-close alerts setelah 5 detik
+    setTimeout(function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            const bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        });
+    }, 5000);
+});
 </script>
 </body>
 </html>

@@ -16,6 +16,17 @@ $id_pendaftaran = $_POST['id_pendaftaran'];
 $id_pembayaran = $_POST['id_pembayaran'];
 $aksi = $_POST['aksi'];
 
+// Di file verifikasi_gabungan.php, tambahkan setelah validasi:
+if($id_pembayaran == '0' || empty($id_pembayaran)) {
+    // Untuk yang belum upload bukti, hanya update status pendaftaran
+    $sql_pendaftaran = "UPDATE pendaftaran SET status_daftar = 'ditolak' WHERE id_pendaftaran = '$id_pendaftaran'";
+    $conn->query($sql_pendaftaran);
+    
+    $_SESSION['success'] = 'Pendaftaran berhasil ditolak!';
+    header("Location: ../pages/admin.php");
+    exit();
+}
+
 if($aksi == 'terverifikasi'){
     // 1. AMBIL DATA KATEGORI UNTUK DAPATKAN PREFIX BIB
     $stmt = $conn->prepare("

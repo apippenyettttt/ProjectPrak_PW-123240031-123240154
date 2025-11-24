@@ -51,12 +51,9 @@ $user_daftar = $cek_daftar->fetch_assoc();
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
 <div class="container">
-    <a class="navbar-brand fw-bold d-flex align-items-center" href="dashboard.php">
+    <a class="navbar-brand fw-bold d-flex align-items-center mx-2" href="dashboard.php">
         <img src="../asset/img/logoVTR.png" width="130">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
         <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
