@@ -7,45 +7,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+
         body {
-            background-color: #eeeeeeff; 
-            /* background-color: #f4f4f4;  */
-        }
-        .card {
-            background-color: rgba(255, 255, 255, 0.9); /* putih transparan sedikit soft */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background-color: #04060fff; /* Navy gelap mengikuti konsep register */
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* NAVBAR */
+        .card,
+        .kategori-card {
+            background: rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            border-radius: 15px;
+            transition: 0.3s ease;
+        }
+
+        .kategori-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.18);
+        }
+
         #navbar {
-            background: rgba(255,255,255,0);
-            box-shadow: none;
+            background: rgba(0,0,0,0.1);
             transition: .3s;
         }
-
         #navbar.scrolled {
-            background: #ffffff;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: rgba(68, 68, 68, 0.75);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+        }
+        .navlink {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+        .navlink:hover {
+            color: #ff4d4d !important;
         }
 
-        #navbar.scrolled .navlink {
-            color: #333 !important;
-        }
-
-        /* HERO */
         .hero {
-            height: 100vh; /* full height viewport */
-            min-height: 600px; /* optional untuk layar kecil */
+            height: 100vh;
+            min-height: 600px;
+            background: url('../asset/img/hero.jpg') center/cover no-repeat;
             position: relative;
-            background: url('../asset/img/hero.jpg') center center / cover no-repeat;
         }
-
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.55);
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
@@ -53,156 +63,114 @@
             transform: translateY(-50%);
             color: white;
             text-align: center;
-            padding: 0 1rem; /* agar responsif di layar kecil */
+            padding: 0 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(0,0,0,0.4);
         }
 
-        html, body {
-            height: 100%;
-            margin: 0;
+        #tentang-box {
+            background: linear-gradient(135deg, #1a2038, #0a0f24);
+            color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
-        /* SECTION TITLE */
         .section-title {
             margin-top: 5rem;
             font-weight: 800;
-            font-size: 2rem;
+            font-size: 2.1rem;
             text-align: center;
-            color: #d00000;
+            color: #ff4d4d;
             margin-bottom: 2rem;
         }
 
-        .kategori-card {
-            border-radius: 12px;
-            padding: 25px;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.1),   /* soft merah */
-                rgba(0, 0, 0, 0.3)        /* soft gelap */
-            );
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all .3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-        .kategori-card:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(
-                135deg,
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.1) 
-             );
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .kategori-card a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .kategori-card:hover {
-            cursor: pointer;
-        }
-
-
         .kategori-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #b60000; /* tetap merah untuk judul */
+            color: #ff4d4d;
         }
-
-
-        /* FOOTER */
         footer {
-            width: 100vw;   
-            margin-left: calc(50% - 50vw); 
-            margin-right: calc(50% - 50vw);
             margin-top: 5rem;
-            background: #000;
-            color: #bbb;
+            background: rgba(63, 63, 63, 1);
+            color: #aaa;
             text-align: center;
-            padding: 12px 0; 
-            font-size: 0.95rem;
+            padding: 15px;
         }
-
-        /* RESPONSIVE HERO TEXT */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
+        [id]::before {
+        content: "";
+        display: block;
+        height: 85px;      
+        margin-top: -50px;
         }
     </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top py-2">
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top py-2">
     <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.php">
+        <a class="navbar-brand fw-bold d-flex align-items-center text-white" href="index.php">
             <img src="../asset/img/logoVTR.png" width="140" class="me-2">
         </a>
 
-        <button class="navbar-toggler btn btn-outline-danger" type="button" data-bs-toggle="collapse"  data-bs-target="#navmenu">
+        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navmenu">
             <ul class="navbar-nav ms-auto text-center text-lg-end">
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-white navlink" href="#beranda">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-white navlink" href="#tentang">Tentang</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-white navlink" href="#kategori">Kategori</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-danger navlink" href="login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold text-danger navlink" href="register.php">Daftar</a>
-                </li>
+                <li class="nav-item"><a class="nav-link navlink" href="#beranda">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link navlink" href="#tentang">Tentang</a></li>
+                <li class="nav-item"><a class="nav-link navlink" href="#kategori">Kategori</a></li>
+                <li class="nav-item"><a class="nav-link text-danger fw-semibold" href="login.php">Login</a></li>
+                <li class="nav-item"><a class="nav-link text-danger fw-semibold" href="register.php">Daftar</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
 <section class="hero" id="beranda">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1 class="fw-bold">VETE-RUN 2025</h1>
-        <p class="lead">Lomba Lari Tahunan – Bersatu Dalam Semangat Kebugaran & Bela Negara</p>
+        <h1>VETE-RUN 2025</h1>
+        <p class="lead">Lomba Lari Tahunan – Sportivitas, Kebugaran & Bela Negara</p>
         <a href="register.php" class="btn btn-danger btn-lg mt-3">Daftar Sekarang</a>
     </div>
 </section>
 
-<!-- TENTANG EVENT -->
+<!-- TENTANG -->
 <section class="container mt-5" id="tentang">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <div class="p-4 p-md-5 rounded shadow-sm" style="background: linear-gradient(100deg, #bc2929ff, #000000ff); color: #fff;">
-                <h2 class="fw-bold text-center mb-3" style="color:#ff4d4d;">Tentang VETE-RUN 2025</h2>
-                <p class="text-center mb-4" style="font-size: 1.05rem;">
-                    <strong>VETE-RUN</strong> adalah event lari tahunan yang diselenggarakan oleh 
-                    <strong>UPN “Veteran” Yogyakarta</strong> dengan semangat kebugaran, sportivitas, dan jiwa bela negara.
+            <div id="tentang-box">
+                <h2 class="text-center fw-bold mb-4" style="color:#ff6464;">Tentang VETE-RUN 2025</h2>
+                <p class="text-center mb-4">
+                    <strong>VETE-RUN</strong> adalah event lari tahunan oleh <strong>UPN “Veteran” Yogyakarta</strong>
+                    dengan semangat sportivitas dan bela negara.
                 </p>
-                <div class="row mt-4 text-center">
+
+                <div class="row text-center mt-4">
                     <div class="col-md-4 mb-3">
-                        <h5 class="fw-bold" style="color:#ff6969;">🏃‍♂️ Tiga Kategori Lari</h5>
-                        <p class="small">5K Fun Run, 15K Challenge, dan 50K Ultra Run untuk pelari profesional.</p>
+                        <h5 class="fw-bold text-danger">🏃‍♂️ 3 Kategori</h5>
+                        <p class="small">5K, 15K, dan 50K Ultra Endurance.</p>
                     </div>
+
                     <div class="col-md-4 mb-3">
-                        <h5 class="fw-bold" style="color:#ff6969;">🎽 Fasilitas Premium</h5>
-                        <p class="small">Race Shirt, BIB Number, Medali Finisher, Hydration Point, dan Asuransi Peserta.</p>
+                        <h5 class="fw-bold text-danger">🎽 Fasilitas</h5>
+                        <p class="small">Medali, Jersey, Hydration Point, Asuransi.</p>
                     </div>
+
                     <div class="col-md-4 mb-3">
-                        <h5 class="fw-bold" style="color:#ff6969;">📍 Rute Ikonik</h5>
-                        <p class="small">Mengelilingi kawasan sekitar UPN, Ring Road Utara, Seturan hingga wilayah Sleman.</p>
+                        <h5 class="fw-bold text-danger">📍 Rute Ikonik</h5>
+                        <p class="small">Area UPN, Ring Road Utara, Seturan & Sleman.</p>
                     </div>
                 </div>
+
                 <div class="text-center mt-4">
                     <a href="register.php" class="btn btn-danger btn-lg">Daftar Sekarang</a>
                 </div>
@@ -211,78 +179,83 @@
     </div>
 </section>
 
-<!-- KATEGORI LOMBA -->
+<!-- KATEGORI -->
 <section class="container mt-5" id="kategori">
     <h2 class="section-title">Kategori Lomba</h2>
 
     <div class="row g-4">
 
+        <!-- 5K -->
         <div class="col-md-4">
             <a href="detail_5k.php" class="text-decoration-none">
-                <div class="kategori-card ">
+                <div class="kategori-card p-4">
                     <div class="kategori-title">5K FUN RUN</div>
-                    <p class="text-muted">Lari jarak pendek untuk pemula & pelari cepat</p>
-                <h6 class ="fw-bold text-muted">Start: 08.00 WIB</h6>
-                <h6 class ="fw-bold text-muted">Minggu, 7 Desember 2025</h6>
-                <h5 class="fw-bold text-danger mt-4">Fasilitas</h5>
+                    <p class="text-light">Untuk pemula & pelari cepat.</p>
+                    <h6 class="fw-bold text-secondary">Start: 08.00 WIB</h6>
+                    <h6 class="fw-bold text-secondary">7 Desember 2025</h6>
+
+                    <h5 class="fw-bold text-danger mt-3">Fasilitas</h5>
                     <ul>
                         <li>BIB Number</li>
-                        <li>Kaos Lari (Race Shirt)</li>
+                        <li>Race Shirt</li>
                         <li>Medali Finisher</li>
-                        <li>Air Mineral & Hydration Point</li>
+                        <li>Hydration Point</li>
                         <li>E-Certificate</li>
-                        <li>Asuransi Kecelakaan</li>
+                        <li>Asuransi</li>
                     </ul>
-    
-                    <a href="detail_5k.php" class="btn btn-danger btn-sm">Lihat Detail</a>
+
+                    <button class="btn btn-danger btn-sm">Lihat Detail</button>
                 </div>
             </a>
         </div>
 
+        <!-- 15K -->
         <div class="col-md-4">
             <a href="detail_15k.php" class="text-decoration-none">
-                <div class="kategori-card">
+                <div class="kategori-card p-4">
                     <div class="kategori-title">15K CHALLENGE</div>
-                    <p class="text-muted">Tantangan jarak menengah untuk pelari serius</p>
-                    <h6 class ="fw-bold text-muted">Start: 06.00 WIB</h6>
-                    <h6 class ="fw-bold text-muted">Minggu, 7 Desember 2025</h6>
-                    <h5 class="fw-bold text-danger mt-4">Fasilitas</h5>
-                        <ul>
-                            <li>BIB Number</li>
-                            <li>Kaos Lari (Race Shirt Premium)</li>
-                            <li>Jaket Lari Ringan (Windbreaker)</li>
-                            <li>Medali Finisher (Metal)</li>
-                            <li>Air Mineral & 2 Hydration Point</li>
-                            <li>Snack Recovery</li>
-                            <li>E-Certificate</li>
-                            <li>Asuransi Kecelakaan</li>
-                        </ul>
-                    <a href="detail_15k.php" class="btn btn-danger btn-sm">Lihat Detail</a>
+                    <p class="text-light">Untuk pelari serius.</p>
+                    <h6 class="fw-bold text-secondary">Start: 06.00 WIB</h6>
+                    <h6 class="fw-bold text-secondary">7 Desember 2025</h6>
+
+                    <h5 class="fw-bold text-danger mt-3">Fasilitas</h5>
+                    <ul>
+                        <li>BIB Number</li>
+                        <li>Race Shirt Premium</li>
+                        <li>Windbreaker</li>
+                        <li>Metal Medal</li>
+                        <li>2 Hydration Points</li>
+                        <li>Snack Recovery</li>
+                    </ul>
+
+                    <button class="btn btn-danger btn-sm">Lihat Detail</button>
                 </div>
             </a>
         </div>
 
+        <!-- 50K -->
         <div class="col-md-4">
             <a href="detail_50k.php" class="text-decoration-none">
-                <div class="kategori-card">
+                <div class="kategori-card p-4">
                     <div class="kategori-title">50K ULTRA</div>
-                    <p class="text-muted">Kategori ekstrim khusus pelari ultra endurance</p>
-                    <h6 class ="fw-bold text-muted">Start: 05.00 WIB</h6>
-                    <h6 class ="fw-bold text-muted">Minggu, 7 Desember 2025</h6>
-                    <h5 class="fw-bold text-danger mt-4">Fasilitas</h5>
-                        <ul>
-                            <li>BIB Number + Chip Timing</li>
-                            <li>Jersey Premium (Dry-Fit Elite)</li>
-                            <li>Jaket Lari (Windbreaker Waterproof)</li>
-                            <li>Hydration Bag (Kantong Air 1L)</li>
-                            <li>Medali Finisher 50K (Metal Khusus)</li>
-                            <li>3 Hydration Station</li>
-                            <li>Banana & Recovery Snack</li>
-                            <li>Free Photos HD</li>
-                            <li>Asuransi Kecelakaan</li>
-                            <li>Ambulance & Medical Team</li>
-                        </ul>
-                    <a href="detail_50k.php" class="btn btn-danger btn-sm">Lihat Detail</a>
+                    <p class="text-light">Ultra endurance level.</p>
+                    <h6 class="fw-bold text-secondary">Start: 05.00 WIB</h6>
+                    <h6 class="fw-bold text-secondary">7 Desember 2025</h6>
+
+                    <h5 class="fw-bold text-danger mt-3">Fasilitas</h5>
+                    <ul>
+                        <li>BIB + Chip Timing</li>
+                        <li>Jersey Premium</li>
+                        <li>Windbreaker Waterproof</li>
+                        <li>Hydration Bag 1L</li>
+                        <li>Special Metal Medal</li>
+                        <li>3 Hydration Stations</li>
+                        <li>Recovery Snack</li>
+                        <li>Photos HD</li>
+                        <li>Medical Team</li>
+                    </ul>
+
+                    <button class="btn btn-danger btn-sm">Lihat Detail</button>
                 </div>
             </a>
         </div>
@@ -290,32 +263,16 @@
     </div>
 </section>
 
+<!-- NAVBAR SCROLL -->
 <script>
     window.addEventListener("scroll", function () {
         let navbar = document.getElementById("navbar");
-        if (window.scrollY > 60) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
+        if (window.scrollY > 60) navbar.classList.add("scrolled");
+        else navbar.classList.remove("scrolled");
     });
 </script>
 
-<!-- FOOTER -->
-<footer>
-    © 2025 VETE-RUN | Event Lari Kampus Bela Negara
-</footer>
-
-<script>
-    window.addEventListener("scroll", function () {
-        let navbar = document.getElementById("navbar");
-        if (window.scrollY > 60) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-    });
-</script>
+<footer>© 2025 VETE-RUN | Event Lari Kampus Bela Negara</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

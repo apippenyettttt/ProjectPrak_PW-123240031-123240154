@@ -38,7 +38,7 @@ $user_daftar = $cek_daftar->fetch_assoc();
         padding-top: 70px;
     }
     .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: -1; }
-    .card-dashboard { background: rgba(50,50,50,0.8); color: #fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+    .card-dashboard { background: rgba(0, 0, 0, 0.65); color: #fff; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.65); }
     .table thead { background-color: #ff4d4d; color: #fff; }
     .btn-danger { background-color: #ff4d4d; border-color: #ff4d4d; }
     .btn-danger:hover { background-color: #d00000; border-color: #d00000; }
@@ -83,7 +83,8 @@ $user_daftar = $cek_daftar->fetch_assoc();
 
 <!-- Halo User -->
 <div class="card card-dashboard p-4 mb-4 text-center" id="dashboard">
-    <h4 class="fw-bold text-danger">Selamat datang di dashboard peserta VETE-RUN 2025. Silakan pilih kategori lomba yang ingin diikuti.</h4>
+    <h4 class="fw-bold text-danger">Selamat datang di dashboard peserta VETE-RUN 2025 !</h4>
+    <h6 class="text-white-50">Silakan pilih kategori lomba yang ingin diikuti.</h6>
 </div>
 
 <!-- Kategori Lomba -->

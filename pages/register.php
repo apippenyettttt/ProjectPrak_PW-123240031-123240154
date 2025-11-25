@@ -26,6 +26,10 @@ body::before {
     background: rgba(0,0,0,0.6);
     z-index: 0;
 }
+@keyframes fadeIn {
+        from {opacity: 0; transform: translateY(-20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
 .register-card {
     position: relative;
     background: rgba(0,0,0,0.85);
@@ -36,6 +40,7 @@ body::before {
     width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 1;
+    animation: fadeIn 1s ease-in-out;
 }
 .register-card h3 {
     color: #ff4d4d;
@@ -85,6 +90,7 @@ a:hover {
 label {
     font-weight: 500;
 }
+
 </style>
 </head>
 <body>
