@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2025 pada 14.35
+-- Waktu pembuatan: 25 Nov 2025 pada 07.06
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -61,6 +61,13 @@ CREATE TABLE `pembayaran` (
   `status_bayar` enum('menunggu','terverifikasi','ditolak') DEFAULT 'menunggu'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pendaftaran`, `tanggal_bayar`, `jumlah_bayar`, `metode_bayar`, `bukti_transfer`, `status_bayar`) VALUES
+(9, 15, '2025-11-24 21:05:13', 50000.00, 'transfer', 0x62756b74695f31355f313736333939333131332e6a7067, 'terverifikasi');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +82,13 @@ CREATE TABLE `pendaftaran` (
   `no_bib` varchar(20) DEFAULT NULL,
   `status_daftar` enum('menunggu','disetujui','ditolak') DEFAULT 'menunggu'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pendaftaran`
+--
+
+INSERT INTO `pendaftaran` (`id_pendaftaran`, `id_user`, `id_kategori`, `tanggal_daftar`, `no_bib`, `status_daftar`) VALUES
+(15, 10, 1, '2025-11-24 21:04:11', 'VTR5K001', 'disetujui');
 
 -- --------------------------------------------------------
 
@@ -99,7 +113,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama_lengkap`, `email`, `password`, `no_hp`, `alamat`, `role`, `tanggal_daftar`) VALUES
 (1, 'Admin VETE-RUN', 'admin@veterun.com', '$2y$10$Of4bdH.2dVFM0pnplUhcOeLS6fqHxbOI3g9RB8OmBQUqEimUMoHea', NULL, NULL, 'admin', '2025-11-09 20:29:47'),
-(3, 'apip penyet', 'test@gmail.com', '$2y$10$cJuYfDfnpIZQ2KG9hW4SEe2eydFtkRkff..RzK0IALuBH6meJQnyq', NULL, NULL, 'user', '2025-11-10 10:04:40');
+(3, 'apip penyet', 'test@gmail.com', '$2y$10$cJuYfDfnpIZQ2KG9hW4SEe2eydFtkRkff..RzK0IALuBH6meJQnyq', NULL, NULL, 'user', '2025-11-10 10:04:40'),
+(10, 'nadil', 'moon@gmail.com', '$2y$10$SCdmC.imREj18AEzrpyF6.hp7f2nWft4D2zQYOgKMy5cUA1hcfW.6', NULL, NULL, 'user', '2025-11-24 21:04:04'),
+(11, 'aa', 'aa@gmail.com', '$2y$10$OMoQtIYpRNAbekK4VKdarOSk3eAuuu5SVDoXo0OE0TJ/.14kyQlLa', NULL, NULL, 'user', '2025-11-24 21:14:05'),
+(12, 'aa', 'a@gmail.com', '$2y$10$Btl9Ojfcde5KsyZc0q/bI.6R/blYQadsyceDvR1MtDLVA0xK.o8cm', NULL, NULL, 'user', '2025-11-24 21:18:33');
 
 --
 -- Indexes for dumped tables
@@ -148,19 +165,19 @@ ALTER TABLE `kategori_lomba`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
