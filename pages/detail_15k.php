@@ -22,7 +22,7 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0,0,0,0.65);
     z-index: 0;
     pointer-events: none;
 }
